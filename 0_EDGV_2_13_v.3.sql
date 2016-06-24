@@ -9183,7 +9183,7 @@ ALTER TABLE "REL"."Alteracao_Fisiografica_Antropica_A" ADD CHECK ("tipoAlterAntr
 ALTER TABLE "TRA"."Trecho_Rodoviario_L" ADD CHECK ("canteiroDivisorio" IN(1,2,999)), ALTER COLUMN "canteiroDivisorio" SET DEFAULT 999;
 ALTER TABLE "TRA"."Trecho_Rodoviario_L" ADD CHECK ("geometriaAproximada" IN(1,2,999)), ALTER COLUMN "geometriaAproximada" SET DEFAULT 999;
 ALTER TABLE "TRA"."Trecho_Rodoviario_L" ADD CHECK ("tipoTrechoRod" IN(1,2,3,4,999)), ALTER COLUMN "tipoTrechoRod" SET DEFAULT 999;
-ALTER TABLE "TRA"."Trecho_Rodoviario_L" ADD CHECK ("jurisdicao" IN(0,1,2,3,8,999)), ALTER COLUMN "jurisdicao" SET DEFAULT 999;
+ALTER TABLE "TRA"."Trecho_Rodoviario_L" ADD CHECK ("jurisdicao" IN(0,1,2,3,6,999)), ALTER COLUMN "jurisdicao" SET DEFAULT 999;
 ALTER TABLE "TRA"."Trecho_Rodoviario_L" ADD CHECK ("administracao" IN(0,1,2,3,6,7,999)), ALTER COLUMN "administracao" SET DEFAULT 999;
 ALTER TABLE "TRA"."Trecho_Rodoviario_L" ADD CHECK ("revestimento" IN(0,1,2,3,4,999)), ALTER COLUMN "revestimento" SET DEFAULT 999;
 ALTER TABLE "TRA"."Trecho_Rodoviario_L" ADD CHECK ("operacional" IN(0,1,2,999)), ALTER COLUMN "operacional" SET DEFAULT 999;
