@@ -135,7 +135,7 @@ $BODY$
 	END IF;
 	IF ST_NumGeometries(NEW.geom) > 1 THEN
 
-		querytext1 := 'INSERT INTO ' || TG_TABLE_SCHEMA || '.' || TG_TABLE_NAME || '(';
+		querytext1 := 'INSERT INTO "' || TG_TABLE_SCHEMA || '"."' || TG_TABLE_NAME || '"(';
 		querytext2 := 'geom) SELECT ';
 
 		FOR r IN SELECT (each(hstore(NEW))).* 
@@ -151,7 +151,7 @@ $BODY$
 		END LOOP;
 
 		IF TG_OP = 'UPDATE' THEN
-			EXECUTE 'DELETE FROM ' || TG_TABLE_NAME || ' WHERE id = ' || OLD.id;
+			EXECUTE 'DELETE FROM "' || TG_TABLE_NAME || '" WHERE id = ' || OLD.id;
 		END IF;
 
 
