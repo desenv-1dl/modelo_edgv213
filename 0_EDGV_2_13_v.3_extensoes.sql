@@ -123,6 +123,7 @@ ALTER FUNCTION calc_area_length()
 
 
 --EXPLODE GEOMETRIA - INICIO
+
 CREATE OR REPLACE FUNCTION explode_geometries()
   RETURNS trigger AS
 $BODY$
@@ -130,6 +131,7 @@ $BODY$
     DECLARE querytext2 text;
     DECLARE r record;
     BEGIN
+
         IF pg_trigger_depth() <> 1 AND ST_NumGeometries(NEW.geom) =1 THEN
 		RETURN NEW;
 	END IF;
@@ -141,7 +143,7 @@ $BODY$
 		FOR r IN SELECT (each(hstore(NEW))).* 
 		LOOP
 			IF r.key <> 'geom' AND r.key <> 'id' THEN
-				querytext1 := querytext1 || r.key || ',';
+				querytext1 := querytext1 || '"' || r.key || '",';
 				IF r.value <> '' THEN
 					querytext2 := querytext2 || '''' || r.value || ''',';
 				ELSE
@@ -151,7 +153,7 @@ $BODY$
 		END LOOP;
 
 		IF TG_OP = 'UPDATE' THEN
-			EXECUTE 'DELETE FROM "' || TG_TABLE_NAME || '" WHERE id = ' || OLD.id;
+			EXECUTE 'DELETE FROM "' || TG_TABLE_SCHEMA || '"."' || TG_TABLE_NAME || '" WHERE id = ' || OLD.id;
 		END IF;
 
 
@@ -168,6 +170,7 @@ $BODY$
   COST 100;
 ALTER FUNCTION explode_geometries()
   OWNER TO postgres;
+
 
 --APLICACAO DE TRIGGER NAS TABELAS - INICIO
 ALTER TABLE "ADM"."Area_Pub_Civil_A"
