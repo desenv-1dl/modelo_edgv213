@@ -28,20 +28,6 @@ INSERT INTO "DOMINIOS"."tipoComprovacao" (code, valor) VALUES
 (999,'A ser preenchido');
 
 
---FUNCAO PARA ESTILOS QGIS
-CREATE OR REPLACE FUNCTION estilo()
-  RETURNS integer AS
-$BODY$
-    UPDATE layer_styles
-        SET f_table_catalog = (select current_catalog)
-        WHERE f_table_catalog<>(SELECT current_catalog);
-    SELECT 1;
-$BODY$
-  LANGUAGE sql VOLATILE
-  COST 100;
-ALTER FUNCTION estilo()
-  OWNER TO postgres;
-
 --ALTERACOES NA BASE - INICIO
 --CAMPOS EXTENDIDOS
 
