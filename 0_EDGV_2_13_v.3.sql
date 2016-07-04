@@ -4374,6 +4374,8 @@ GRANT ALL ON TABLE "REL"."Alteracao_Fisiografica_Antropica_A" TO public;
 --#################################################################################################################
 CREATE TABLE "TRA"."Trecho_Rodoviario_L"(
 	id serial NOT NULL PRIMARY KEY UNIQUE,
+	"nome" VARCHAR (255),
+	"sigla" VARCHAR(50),
 	"codTrechoRodov" varchar(25),
 	"concessionaria" varchar(100),
  	"nrPistas" smallint ,
