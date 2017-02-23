@@ -9696,13 +9696,13 @@ ALTER TABLE "ECO"."Edif_Industrial_P" ADD CHECK ("geometriaAproximada" IN(1,2,99
 ALTER TABLE "ECO"."Edif_Industrial_P" ADD CHECK ("chamine" IN(1,2,999)), ALTER COLUMN "chamine" SET DEFAULT 999;
 ALTER TABLE "ECO"."Edif_Industrial_P" ADD CHECK ("operacional" IN(0,1,2,999)), ALTER COLUMN "operacional" SET DEFAULT 999;
 ALTER TABLE "ECO"."Edif_Industrial_P" ADD CHECK ("situacaoFisica" IN(0,1,2,3,5,999)), ALTER COLUMN "situacaoFisica" SET DEFAULT 999;
-ALTER TABLE "ECO"."Edif_Industrial_P" ADD CHECK ("matConstr" IN(0,1,2,3,5,99,999)), ALTER COLUMN "matConstr" SET DEFAULT 999;
+ALTER TABLE "ECO"."Edif_Industrial_P" ADD CHECK ("matConstr" IN(0,1,2,3,4,5,97,99,999)), ALTER COLUMN "matConstr" SET DEFAULT 999;
 ALTER TABLE "ECO"."Edif_Industrial_P" ADD CHECK ("tipoDivisaoCnae" IN(0,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,45,99,999)), ALTER COLUMN "tipoDivisaoCnae" SET DEFAULT 999;
 ALTER TABLE "ECO"."Edif_Industrial_A" ADD CHECK ("geometriaAproximada" IN(1,2,999)), ALTER COLUMN "geometriaAproximada" SET DEFAULT 999;
 ALTER TABLE "ECO"."Edif_Industrial_A" ADD CHECK ("chamine" IN(1,2,999)), ALTER COLUMN "chamine" SET DEFAULT 999;
 ALTER TABLE "ECO"."Edif_Industrial_A" ADD CHECK ("operacional" IN(0,1,2,999)), ALTER COLUMN "operacional" SET DEFAULT 999;
 ALTER TABLE "ECO"."Edif_Industrial_A" ADD CHECK ("situacaoFisica" IN(0,1,2,3,5,999)), ALTER COLUMN "situacaoFisica" SET DEFAULT 999;
-ALTER TABLE "ECO"."Edif_Industrial_A" ADD CHECK ("matConstr" IN(0,1,2,3,5,99,999)), ALTER COLUMN "matConstr" SET DEFAULT 999;
+ALTER TABLE "ECO"."Edif_Industrial_A" ADD CHECK ("matConstr" IN(0,1,2,3,4,5,97,99,999)), ALTER COLUMN "matConstr" SET DEFAULT 999;
 ALTER TABLE "ECO"."Edif_Industrial_A" ADD CHECK ("tipoDivisaoCnae" IN(0,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,45,99,999)), ALTER COLUMN "tipoDivisaoCnae" SET DEFAULT 999;
 ALTER TABLE "ECO"."Area_Ext_Mineral_A" ADD CHECK ("geometriaAproximada" IN(1,2,999)), ALTER COLUMN "geometriaAproximada" SET DEFAULT 999;
 ALTER TABLE "ECO"."Ext_Mineral_P" ADD CHECK ("geometriaAproximada" IN(1,2,999)), ALTER COLUMN "geometriaAproximada" SET DEFAULT 999;
