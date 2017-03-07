@@ -10162,6 +10162,9 @@ ALTER TABLE "AQUISICAO"."Veg_Cultivada_C" ADD CHECK ("cultivoPredominante" IN(1,
 -- Fim - Cria as restrições e default de cada classe
 --########################################################################################################
 -- atualizacao na producao
+BEGIN;
+DROP TABLE "AQUISICAO"."Banco_Areia_C";
+
 CREATE TABLE "AQUISICAO"."Banco_Areia_C"(
 	id serial NOT NULL PRIMARY KEY UNIQUE,
 	"nome" varchar(80),
@@ -10172,7 +10175,7 @@ CREATE TABLE "AQUISICAO"."Banco_Areia_C"(
 	"nomeAbrev" varchar(50)
 );
 
-SELECT AddGeometryColumn('AQUISICAO', 'Banco_Areia_C','geom', 31981, 'MULTIPOLYGON', 2 );
+SELECT AddGeometryColumn('AQUISICAO', 'Banco_Areia_C','geom', 31982, 'MULTIPOINT', 2 );
 CREATE INDEX idx_AQUISICAO_Banco_Areia_C_geom ON "AQUISICAO"."Banco_Areia_C" USING gist (geom) WITH (FILLFACTOR=90);
 ALTER TABLE "AQUISICAO"."Banco_Areia_C" ALTER COLUMN geom SET NOT NULL;
 GRANT ALL ON TABLE "AQUISICAO"."Banco_Areia_C" TO public;
@@ -10186,6 +10189,7 @@ ALTER TABLE "AQUISICAO"."Banco_Areia_C" ADD CHECK ("materialPredominante" IN(0,1
 
 
 --#################################################################################################################
+DROP TABLE "AQUISICAO"."Terreno_Sujeito_Inundacao_C";
 CREATE TABLE "AQUISICAO"."Terreno_Sujeito_Inundacao_C"(
 	id serial NOT NULL PRIMARY KEY UNIQUE,
 	"nome" varchar(80),
@@ -10194,12 +10198,13 @@ CREATE TABLE "AQUISICAO"."Terreno_Sujeito_Inundacao_C"(
 	"nomeAbrev" varchar(50)
 	
 );
-SELECT AddGeometryColumn('AQUISICAO', 'Terreno_Sujeito_Inundacao_C','geom', 31981, 'MULTIPOLYGON', 2 );
+SELECT AddGeometryColumn('AQUISICAO', 'Terreno_Sujeito_Inundacao_C','geom', 31982, 'MULTIPOINT', 2 );
 CREATE INDEX idx_AQUISICAO_Terreno_Sujeito_Inundacao_C_geom ON "AQUISICAO"."Terreno_Sujeito_Inundacao_C" USING gist (geom) WITH (FILLFACTOR=90);
 ALTER TABLE "AQUISICAO"."Terreno_Sujeito_Inundacao_C" ALTER COLUMN geom SET NOT NULL;
 GRANT ALL ON TABLE "AQUISICAO"."Terreno_Sujeito_Inundacao_C" TO public;
 
 ALTER TABLE "AQUISICAO"."Terreno_Sujeito_Inundacao_C" ADD CHECK ("geometriaAproximada" IN(1,2,999)), ALTER COLUMN "geometriaAproximada" SET DEFAULT 999;
+COMMIT;
 --fim
 --####################################################################################################
 --FUNCAO PARA ESTILOS QGIS
