@@ -10161,7 +10161,47 @@ ALTER TABLE "AQUISICAO"."Veg_Cultivada_C" ADD CHECK ("cultivoPredominante" IN(1,
 
 -- Fim - Cria as restrições e default de cada classe
 --########################################################################################################
+-- atualizacao na producao
+CREATE TABLE "AQUISICAO"."Banco_Areia_C"(
+	id serial NOT NULL PRIMARY KEY UNIQUE,
+	"nome" varchar(80),
+ 	"geometriaAproximada" smallint NOT NULL REFERENCES "DOMINIOS"."geometriaAproximada" (code),
+ 	"tipoBanco" smallint NOT NULL REFERENCES "DOMINIOS"."tipoBanco" (code),
+ 	"situacaoEmAgua" smallint NOT NULL REFERENCES "DOMINIOS"."situacaoEmAgua" (code),
+ 	"materialPredominante" smallint NOT NULL REFERENCES "DOMINIOS"."materialPredominante" (code),
+	"nomeAbrev" varchar(50)
+);
 
+SELECT AddGeometryColumn('AQUISICAO', 'Banco_Areia_C','geom', 31981, 'MULTIPOLYGON', 2 );
+CREATE INDEX idx_AQUISICAO_Banco_Areia_C_geom ON "AQUISICAO"."Banco_Areia_C" USING gist (geom) WITH (FILLFACTOR=90);
+ALTER TABLE "AQUISICAO"."Banco_Areia_C" ALTER COLUMN geom SET NOT NULL;
+GRANT ALL ON TABLE "AQUISICAO"."Banco_Areia_C" TO public;
+--#################################################################################################################
+
+
+ALTER TABLE "AQUISICAO"."Banco_Areia_C" ADD CHECK ("geometriaAproximada" IN(1,2,999)), ALTER COLUMN "geometriaAproximada" SET DEFAULT 999;
+ALTER TABLE "AQUISICAO"."Banco_Areia_C" ADD CHECK ("tipoBanco" IN(1,2,3,4,998,999)), ALTER COLUMN "tipoBanco" SET DEFAULT 999;
+ALTER TABLE "AQUISICAO"."Banco_Areia_C" ADD CHECK ("situacaoEmAgua" IN(0,4,5,7,999)), ALTER COLUMN "situacaoEmAgua" SET DEFAULT 999;
+ALTER TABLE "AQUISICAO"."Banco_Areia_C" ADD CHECK ("materialPredominante" IN(0,12,18,19,24,98,999)), ALTER COLUMN "materialPredominante" SET DEFAULT 999;
+
+
+--#################################################################################################################
+CREATE TABLE "AQUISICAO"."Terreno_Sujeito_Inundacao_C"(
+	id serial NOT NULL PRIMARY KEY UNIQUE,
+	"nome" varchar(80),
+ 	"geometriaAproximada" smallint NOT NULL REFERENCES "DOMINIOS"."geometriaAproximada" (code),
+	"periodicidadeInunda" varchar(20),
+	"nomeAbrev" varchar(50)
+	
+);
+SELECT AddGeometryColumn('AQUISICAO', 'Terreno_Sujeito_Inundacao_C','geom', 31981, 'MULTIPOLYGON', 2 );
+CREATE INDEX idx_AQUISICAO_Terreno_Sujeito_Inundacao_C_geom ON "AQUISICAO"."Terreno_Sujeito_Inundacao_C" USING gist (geom) WITH (FILLFACTOR=90);
+ALTER TABLE "AQUISICAO"."Terreno_Sujeito_Inundacao_C" ALTER COLUMN geom SET NOT NULL;
+GRANT ALL ON TABLE "AQUISICAO"."Terreno_Sujeito_Inundacao_C" TO public;
+
+ALTER TABLE "AQUISICAO"."Terreno_Sujeito_Inundacao_C" ADD CHECK ("geometriaAproximada" IN(1,2,999)), ALTER COLUMN "geometriaAproximada" SET DEFAULT 999;
+--fim
+--####################################################################################################
 --FUNCAO PARA ESTILOS QGIS
 CREATE OR REPLACE FUNCTION estilo()
   RETURNS integer AS
