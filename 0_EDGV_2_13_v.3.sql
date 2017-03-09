@@ -8504,7 +8504,7 @@ GRANT ALL ON TABLE "AQUISICAO"."Barragem_C" TO public;
 --#################################################################################################################
 --#################################################################################################################
 CREATE TABLE "AQUISICAO"."Massa_Dagua_C"(
-	id serial NOT NULL,
+	id serial NOT NULL PRIMARY KEY,
 	"nome" varchar(80),
 	"nomeAbrev" varchar(50),
  	"geometriaAproximada" smallint NOT NULL REFERENCES "DOMINIOS"."geometriaAproximada" (code),
